@@ -113,8 +113,7 @@ class DiscordIpcClient(metaclass=ABCMeta):
         data_str = json.dumps(data, separators=(',', ':'))
         data_bytes = data_str.encode('utf-8')
         header = struct.pack("<II", op, len(data_bytes))
-        self._write(header)
-        self._write(data_bytes)
+        self._Fi(header + data_bytes)
 
     def recv(self) -> (int, "JSON"):
         """Receives a packet from discord.
